@@ -1,16 +1,14 @@
-# This is a sample Python script.
+import json
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import requests
 
+data = {
+    "email": "a.mosyakin@itdept.cloud",
+    "password": "rewq4321"
+}
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+response = requests.post("https://kazino-back-demo.dev2.itdept.cloud/api/v1/auth/login/", data= data)
 
+name = json.loads(response.text)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(name['user']['email'])
